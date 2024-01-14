@@ -24,5 +24,4 @@ function cartItemTemplate(item) {
 
   return newItem;
 }
-
 renderCartContents();
