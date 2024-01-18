@@ -5,24 +5,39 @@ export default class ProductDetails {
     this.dataSource = dataSource;
   }
 
-  init() {
-    // add to cart button event handler
-    async function addToCartHandler(e) {
-      const product = await dataSource.findProductById(e.target.dataset.id);
-      addProductToCart(product);
-    }
-
-    // add listener to Add to Cart button
-    document
-      .getElementById("addToCart")
-      .addEventListener("click", addToCartHandler);
+  async init() {
+    this.product = await this.dataSource.findProductById(this.productId);
+    this.renderProductDetails();
+    // document
+    //   .getElementById("addToCart")
+    //   .addEventListener("click", this.addToCartHandler.bind(this));
   }
 
-  addProductToCart(product) {
-    const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(product);
-    setLocalStorage("so-cart", cartItems);
-  }
+  // addProductToCart(product) {
+  //   const cartItems = getLocalStorage("so-cart") || [];
+  //   cartItems.push(product);
+  //   setLocalStorage("so-cart", cartItems);
+  // }
 
-  renderProductDetails() {}
+  renderProductDetails() {
+    let parentElement = document.querySelector(".divider");
+
+    let childTemplateElement = `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
+    <h2 class="divider">${this.product.NameWithoutBrand}</h2>
+    <img
+    class="divider"
+    src="${this.product.Image}"
+    alt="${this.product.NameWithoutBrand}"
+    />
+    <p class="product-card__price">$${this.product.FinalPrice}</p>
+    <p class="product__color">${this.product.Colors[0].ColorName}</p>
+    <p class="product__description">
+    ${this.product.DescriptionHtmlSimple}
+    </p>
+    <div class="product-detail__add">
+    <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
+    </div></section>`;
+
+    parentElement.insertAdjacentHTML("afterBegin", childTemplateElement);
+  }
 }
