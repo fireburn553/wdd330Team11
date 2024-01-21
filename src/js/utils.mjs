@@ -38,3 +38,11 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
     parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
   
 }
+
+export function  setCartCount(count) {
+  localStorage.setItem("cartCount", count);
+}
+
+export function getCartCount() {
+  return parseInt(localStorage.getItem("cartCount")) || 0;
+}
