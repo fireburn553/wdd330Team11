@@ -46,3 +46,9 @@ export function  setCartCount(count) {
 export function getCartCount() {
   return parseInt(localStorage.getItem("cartCount")) || 0;
 }
+
+
+export function updateCartBadge() {
+  const cartCount = getCartCount(); // Assume you have a function to get the cart count
+  document.querySelector(".cart-count").innerText = cartCount.toString();
+}
