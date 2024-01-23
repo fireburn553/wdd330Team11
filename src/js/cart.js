@@ -1,10 +1,10 @@
-import { getLocalStorage, getCartCount } from "./utils.mjs";
+import { getLocalStorage, updateCartBadge } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document.querySelector(".cart-count").innerText = getCartCount().toString();
+  updateCartBadge();
 }
 
 function cartItemTemplate(item) {
