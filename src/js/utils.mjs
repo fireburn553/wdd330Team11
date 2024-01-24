@@ -64,13 +64,14 @@ export function setCartCount(count) {
 }
 
 export function getCartCount() {
-  return parseInt(localStorage.getItem("cartCount")) || 0;
+  const count = parseInt(localStorage.getItem("cartCount")) || 0;
+  return count;
 }
 
-// export function updateCartBadge() {
-//   const cartCount = getCartCount(); // Assume you have a function to get the cart count
-//   document.querySelector(".cart-count").innerText = cartCount.toString();
-// }
+export function updateCartBadge(data) {
+  // const cartCount = getCartCount(); // Assume you have a function to get the cart count
+  document.querySelector(".cart-count").innerText = data.toString();
+}
 
 async function loadTemplate(path) {
   const res = await fetch(path);
@@ -89,7 +90,13 @@ export async function loadHeaderFooter() {
     const footerElement = document.querySelector("#main-footer"); // Replace 'footer' with the actual ID of your footer element
 
     // Render header and footer with templates
-    renderWithTemplate(headerElement, headerTemplate);
+    renderWithTemplate(
+      headerElement,
+      headerTemplate,
+      getCartCount(),
+      "afterbegin",
+      updateCartBadge
+    );
     renderWithTemplate(footerElement, footerTemplate);
   } catch (error) {
     console.error("Error loading header and footer:", error);
