@@ -46,18 +46,17 @@ export function renderListWithTemplate(
 }
 
 export function renderWithTemplate(
-  templateFn,
   parentElement,
+  template,
   data,
   position = "afterbegin",
-  clear = false
+  callback
 ) {
-  const htmlStrings = data(templateFn);
-  if (clear) {
-    parentElement.innerHTML = "";
+  parentElement.insertAdjacentHTML(position, template);
+  //if there is a callback...call it and pass data
+  if (callback) {
+    callback(data);
   }
-
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
 export function setCartCount(count) {
@@ -68,10 +67,10 @@ export function getCartCount() {
   return parseInt(localStorage.getItem("cartCount")) || 0;
 }
 
-export function updateCartBadge() {
-  const cartCount = getCartCount(); // Assume you have a function to get the cart count
-  document.querySelector(".cart-count").innerText = cartCount.toString();
-}
+// export function updateCartBadge() {
+//   const cartCount = getCartCount(); // Assume you have a function to get the cart count
+//   document.querySelector(".cart-count").innerText = cartCount.toString();
+// }
 
 async function loadTemplate(path) {
   const res = await fetch(path);
@@ -83,11 +82,11 @@ export async function loadHeaderFooter() {
   try {
     // Load header and footer templates
     const headerTemplate = await loadTemplate("./partials/header.html"); // Replace 'headerTemplate' with the actual template name
-    const footerTemplate = await loadTemplate("./partials/footer"); // Replace 'footerTemplate' with the actual template name
+    const footerTemplate = await loadTemplate("./partials/footer.html"); // Replace 'footerTemplate' with the actual template name
 
     // Grab header and footer elements from the DOM (assuming you're using a library like jsdom)
-    const headerElement = document.getElementById("#main-header"); // Replace 'header' with the actual ID of your header element
-    const footerElement = document.getElementById("#main-footer"); // Replace 'footer' with the actual ID of your footer element
+    const headerElement = document.querySelector("#main-header"); // Replace 'header' with the actual ID of your header element
+    const footerElement = document.querySelector("#main-footer"); // Replace 'footer' with the actual ID of your footer element
 
     // Render header and footer with templates
     renderWithTemplate(headerElement, headerTemplate);
