@@ -64,13 +64,34 @@ export function setCartCount(count) {
 }
 
 export function getCartCount() {
-  const count = parseInt(localStorage.getItem("cartCount")) || 0;
-  return count;
+  return parseInt(localStorage.getItem("cartCount")) || 0;
 }
 
+// export async function updateCartBadge(data) {
+//   if (data) {
+//     document.querySelector(".cart-count").innerText = data.toString();
+//   } else {
+//     const cartCount = getCartCount(); // Assume you have a function to get the cart count
+//     document.querySelector(".cart-count").innerText = cartCount.toString();
+//   }
+// }
+
+// This version of the updateCartBadge fails mercifully
+// since the function cant get the cartCountElement yet
+// because the heade partials is not there yet when the function runs
 export function updateCartBadge(data) {
-  // const cartCount = getCartCount(); // Assume you have a function to get the cart count
-  document.querySelector(".cart-count").innerText = data.toString();
+  const cartCountElement = document.querySelector(".cart-count");
+
+  if (cartCountElement) {
+    if (data !== undefined) {
+      cartCountElement.innerText = data.toString();
+    } else {
+      const cartCount = getCartCount(); // Assuming getCartCount is an asynchronous function
+      cartCountElement.innerText = cartCount.toString();
+    }
+  } else {
+    console.error("Element with class 'cart-count' not found.");
+  }
 }
 
 async function loadTemplate(path) {

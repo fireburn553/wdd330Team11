@@ -5,7 +5,7 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   const data = getCartCount();
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  updateCartBadge(data);
+  updateCartBadge();
 }
 
 function cartItemTemplate(item) {

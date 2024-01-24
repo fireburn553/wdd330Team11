@@ -11,7 +11,6 @@ export default class ProductDetails {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
-    this.data = getCartCount();
   }
 
   async init() {
@@ -25,7 +24,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addProductToCart.bind(this));
 
-    updateCartBadge(this.data);
+    updateCartBadge();
   }
 
   addProductToCart() {
@@ -33,7 +32,7 @@ export default class ProductDetails {
     cartItems.push(this.product);
     setLocalStorage("so-cart", cartItems);
     setCartCount(cartItems.length);
-    updateCartBadge(this.data);
+    updateCartBadge();
   }
 
   renderProductDetails() {
