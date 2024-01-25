@@ -1,4 +1,10 @@
-import { setLocalStorage, getLocalStorage, updateCartBadge, getCartCount, setCartCount} from "./utils.mjs";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  getCartCount,
+  updateCartBadge,
+  setCartCount,
+} from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -18,8 +24,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addProductToCart.bind(this));
 
-      updateCartBadge();
-    
+    updateCartBadge();
   }
 
   addProductToCart() {
