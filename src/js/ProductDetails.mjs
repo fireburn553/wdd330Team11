@@ -24,7 +24,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click", this.addProductToCart.bind(this));
 
-    updateCartBadge();
+    // updateCartBadge();
   }
 
   addProductToCart() {

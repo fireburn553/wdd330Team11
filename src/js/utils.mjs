@@ -52,6 +52,7 @@ export function renderWithTemplate(
   position = "afterbegin",
   callback
 ) {
+  console.log(template);
   parentElement.insertAdjacentHTML(position, template);
   //if there is a callback...call it and pass data
   if (callback) {
@@ -108,16 +109,11 @@ export async function loadHeaderFooter() {
 
     // Grab header and footer elements from the DOM (assuming you're using a library like jsdom)
     const headerElement = document.querySelector("#main-header"); // Replace 'header' with the actual ID of your header element
+    // console.log(headerElement);
     const footerElement = document.querySelector("#main-footer"); // Replace 'footer' with the actual ID of your footer element
 
     // Render header and footer with templates
-    renderWithTemplate(
-      headerElement,
-      headerTemplate,
-      getCartCount(),
-      "afterbegin",
-      updateCartBadge
-    );
+    renderWithTemplate(headerElement, headerTemplate);
     renderWithTemplate(footerElement, footerTemplate);
   } catch (error) {
     console.error("Error loading header and footer:", error);

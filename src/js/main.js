@@ -17,7 +17,7 @@ let span = document.querySelector(".close");
 const closesumbission = document.querySelector(".close-submission");
 let thanks = document.querySelector(".thanks");
 const submitbtn = document.querySelector(".submitBtn");
-let closeSubmissionBtn = document.querySelector(".close-submission");
+// let closeSubmissionBtn = document.querySelector(".close-submission");
 
 joinbtn.addEventListener("click", () => {
   modal.style.display = "block";
