@@ -102,9 +102,9 @@ async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   try {
-    // Load header and footer templates
-    const headerTemplate = await loadTemplate("./partials/header.html"); // Replace 'headerTemplate' with the actual template name
-    const footerTemplate = await loadTemplate("./partials/footer.html"); // Replace 'footerTemplate' with the actual template name
+    // Load header and footer templates 
+    const headerTemplate = await loadTemplate("../partials/header.html"); // Replace 'headerTemplate' with the actual template name
+    const footerTemplate = await loadTemplate("../partials/footer.html"); // Replace 'footerTemplate' with the actual template name
 
     // Grab header and footer elements from the DOM (assuming you're using a library like jsdom)
     const headerElement = document.querySelector("#main-header"); // Replace 'header' with the actual ID of your header element

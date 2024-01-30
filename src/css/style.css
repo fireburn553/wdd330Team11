@@ -156,6 +156,7 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  text-align: center;
 }
 .product-card h2,
 .product-card h3,
@@ -277,4 +278,28 @@ fieldset,
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+div.wrapper-category {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  column-gap: 10px;
+}
+
+div.individual-category img {
+  padding: 30px;
+}
+
+.title {
+  text-transform: capitalize;
+}
+
+div.individual-category a{
+  text-decoration: none;
+  color: black;
+}
+
+div.individual-category:hover {
+  border: 5px solid #f0a868;
 }
