@@ -5,6 +5,7 @@ import { loadHeaderFooter, getParam } from "./utils.mjs";
 loadHeaderFooter();
 
 const category = getParam("category");
+// console.log(category);
 // first create an instance of our ProductData class.
 const dataSource = new ProductData();
 // then get the element we want the product list to render in
