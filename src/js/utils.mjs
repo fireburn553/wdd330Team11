@@ -102,9 +102,9 @@ async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   try {
-    // Load header and footer templates
-    const headerTemplate = await loadTemplate("./partials/header.html"); // Replace 'headerTemplate' with the actual template name
-    const footerTemplate = await loadTemplate("./partials/footer.html"); // Replace 'footerTemplate' with the actual template name
+    // Load header and footer templates 
+    const headerTemplate = await loadTemplate("../partials/header.html"); // Replace 'headerTemplate' with the actual template name
+    const footerTemplate = await loadTemplate("../partials/footer.html"); // Replace 'footerTemplate' with the actual template name
 
     // Grab header and footer elements from the DOM (assuming you're using a library like jsdom)
     const headerElement = document.querySelector("#main-header"); // Replace 'header' with the actual ID of your header element
@@ -122,4 +122,29 @@ export async function loadHeaderFooter() {
   } catch (error) {
     console.error("Error loading header and footer:", error);
   }
+}
+
+//Sorting function
+export async function sortByName(data) {
+  const sortedData = [...data];
+  sortedData.sort((a, b) => a.Name.localeCompare(b.Name));
+  return sortedData;
+}
+
+export function sortByPrice(data) {
+  const sortedData = [...data]; 
+  sortedData.sort((a, b) => a.FinalPrice - b.FinalPrice);
+  return sortedData;
+}
+
+export function sortByNameDescending(data) {
+  const sortedData = [...data];
+  sortedData.sort((a, b) => b.Name.localeCompare(a.Name));
+  return sortedData;
+}
+
+export function sortByPriceDescending(data) {
+  const sortedData = [...data]; 
+  sortedData.sort((a, b) => b.FinalPrice - a.FinalPrice);
+  return sortedData;
 }
