@@ -83,6 +83,19 @@ async function loadTemplate(path) {
   return template;
 }
 
+export function cartTotal(cartItems) {
+  let total = 0;
+  cartItems.forEach(element => {
+    total += element.FinalPrice;
+  });
+
+  if (total) {
+    return `<h2>Total: $${total}</h2><a href="../checkout/index.html" class="cart-card__checkout">Checkout</a>`;
+  } else {
+    return ``;
+  }
+}
+
 export async function loadHeaderFooter() {
   try {
     // Load header and footer templates

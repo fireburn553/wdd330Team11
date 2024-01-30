@@ -26,7 +26,9 @@ export default class ProductListing {
   }
 
   renderList(list) {
-      renderListWithTemplate(productCardTemplate, this.listElement, list)
+    renderListWithTemplate(productCardTemplate, this.listElement, list)
+    //set the title to the current category
+    document.querySelector(".title").innerHTML = this.category;
   }
   
    filterTents(list) {

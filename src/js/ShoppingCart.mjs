@@ -27,17 +27,21 @@ export default class Shoppingcart {
     this.listElement = listElement;
   }
 
-  //   async init() {
-  //     const list = await this.dataSource.getData();
-  //     this.filterTents(list);
-  //   }
-
-  
+  async init() {
+      const list = getLocalStorage(this.key);
+      this.calculateListTotal(list);
+      this.renderCartContents(list);
+    }
+    calculateListTotal(list) {
+      const amounts = list.map((item) => item.FinalPrice);
+      this.total = amounts.reduce((sum, item) => sum + item);
+    }
 
   renderCartContents() {
     const cartItems = getLocalStorage(this.dataSource) || [];
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.listElement).innerHTML = htmlItems.join("");
+    document.querySelector(".list-total").innerText += ` $${this.total}`;
     // updateCartBadge();
   }
 }
