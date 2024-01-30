@@ -123,3 +123,28 @@ export async function loadHeaderFooter() {
     console.error("Error loading header and footer:", error);
   }
 }
+
+//Sorting function
+export async function sortByName(data) {
+  const sortedData = [...data];
+  sortedData.sort((a, b) => a.Name.localeCompare(b.Name));
+  return sortedData;
+}
+
+export function sortByPrice(data) {
+  const sortedData = [...data]; 
+  sortedData.sort((a, b) => a.FinalPrice - b.FinalPrice);
+  return sortedData;
+}
+
+export function sortByNameDescending(data) {
+  const sortedData = [...data];
+  sortedData.sort((a, b) => b.Name.localeCompare(a.Name));
+  return sortedData;
+}
+
+export function sortByPriceDescending(data) {
+  const sortedData = [...data]; 
+  sortedData.sort((a, b) => b.FinalPrice - a.FinalPrice);
+  return sortedData;
+}

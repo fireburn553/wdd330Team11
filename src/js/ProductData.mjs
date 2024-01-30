@@ -1,3 +1,5 @@
+import { sortByName, sortByNameDescending, sortByPrice, sortByPriceDescending } from "./utils.mjs";
+
 const baseURL = import.meta.env.VITE_SERVER_URL
 
 function convertToJson(res) {
@@ -15,7 +17,6 @@ export default class ProductData {
   async getData(category) {
     const response = await fetch(baseURL + `products/search/${category}`);
     const data = await convertToJson(response);
-    console.log(data)
     return data.Result;
   }
   async findProductById(id) {
@@ -24,3 +25,4 @@ export default class ProductData {
     return data.Result
   }
 }
+

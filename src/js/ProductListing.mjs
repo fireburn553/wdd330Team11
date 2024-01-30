@@ -17,15 +17,20 @@ export default class ProductListing {
         this.dataSource = dataSource;
         this.category = category;
         this.listElement = listElement;
+        this.list = null;
     }
 
     async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+        this.list = await this.dataSource.getData(this.category);
+        this.renderList(this.getList());
         document.querySelector(".title").innerHTML = this.category;
     }
 
-    renderList(list) {
-      renderListWithTemplate(productCardTemplate, this.listElement, list)
+    renderList(list, RenderClear = false) {
+      renderListWithTemplate(productCardTemplate, this.listElement, list, "afterbegin", RenderClear)
+    }
+
+    getList() {
+      return this.list;
     }
 }
