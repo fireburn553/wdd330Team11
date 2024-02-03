@@ -264,7 +264,8 @@ fieldset,
   box-sizing: border-box;
 }
 
-#sign-up-modal {
+#sign-up-modal,
+#thankMessage {
   display: none;
   position: fixed;
   z-index: 1;
@@ -274,6 +275,12 @@ fieldset,
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+#thankMessage {
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
 }
 
 .sigu-up-form {

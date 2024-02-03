@@ -150,18 +150,38 @@ export function sortByPriceDescending(data) {
 }
 
 export async function loadSignUpModel() {
-  const signupElement = document.querySelector("#sign-up-modal");
+  const signUpModal = document.querySelector("#sign-up-modal");
+  const signUpSection = document.querySelector(".sign-up");
   const signupTemplate = await loadTemplate("../partials/signup.html");
   const signUpBtn = document.querySelector("#signUpBtn");
   const closesumbission = document.querySelector(".close-submission");
+  const formValues = {};
 
   if (!getLocalStorage("signed")) {
     signUpBtn.addEventListener("click", () => {
-      renderWithTemplate(signupElement, signupTemplate);
-      signupElement.style.display = "block";
+      renderWithTemplate(signUpModal, signupTemplate);
+      signUpModal.style.display = "block";
+      const form = signUpModal.lastElementChild.lastElementChild;
+      const formBtn = form.lastElementChild;
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let formElement = event.target;
+        const formData = new FormData(formElement);
+
+        for (let key of formData.keys()) {
+          formValues[key] = formData.get(key);
+        }
+        // thankMessage.style.display = "flex";
+        signUpSection.style.display = "none";
+
+        console.log(formValues);
+        setLocalStorage("signed", formValues);
+      });
     });
-  } else console.log("Not signed");
-  closeModel(signupElement, closesumbission);
+  } else if (getLocalStorage("signed")) {
+    signUpSection.style.display = "none";
+  }
+  closeModel(signUpModal, closesumbission);
 }
 
 function closeModel(modal, closesumbission) {
