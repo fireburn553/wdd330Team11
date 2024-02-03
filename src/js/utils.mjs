@@ -102,7 +102,7 @@ async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   try {
-    // Load header and footer templates 
+    // Load header and footer templates
     const headerTemplate = await loadTemplate("../partials/header.html"); // Replace 'headerTemplate' with the actual template name
     const footerTemplate = await loadTemplate("../partials/footer.html"); // Replace 'footerTemplate' with the actual template name
 
@@ -132,7 +132,7 @@ export async function sortByName(data) {
 }
 
 export function sortByPrice(data) {
-  const sortedData = [...data]; 
+  const sortedData = [...data];
   sortedData.sort((a, b) => a.FinalPrice - b.FinalPrice);
   return sortedData;
 }
@@ -144,7 +144,31 @@ export function sortByNameDescending(data) {
 }
 
 export function sortByPriceDescending(data) {
-  const sortedData = [...data]; 
+  const sortedData = [...data];
   sortedData.sort((a, b) => b.FinalPrice - a.FinalPrice);
   return sortedData;
+}
+
+export async function loadSignUpModel() {
+  const signupElement = document.querySelector("#sign-up-modal");
+  const signupTemplate = await loadTemplate("../partials/signup.html");
+  const signUpBtn = document.querySelector("#signUpBtn");
+  const closesumbission = document.querySelector(".close-submission");
+
+  if (!getLocalStorage("signed")) {
+    signUpBtn.addEventListener("click", () => {
+      renderWithTemplate(signupElement, signupTemplate);
+      signupElement.style.display = "block";
+    });
+  } else console.log("Not signed");
+  closeModel(signupElement, closesumbission);
+}
+
+function closeModel(modal, closesumbission) {
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+      modal.innerHTML = "";
+    }
+  };
 }

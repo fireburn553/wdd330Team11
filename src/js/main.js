@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, loadSignUpModel } from "./utils.mjs";
 
 const joinbtn = document.querySelector("#join-news-btn");
 const modal = document.querySelector("#modal");
@@ -8,6 +8,7 @@ let thanks = document.querySelector(".thanks");
 const submitbtn = document.querySelector(".submitBtn");
 
 loadHeaderFooter();
+loadSignUpModel();
 
 joinbtn.addEventListener("click", () => {
   modal.style.display = "block";
