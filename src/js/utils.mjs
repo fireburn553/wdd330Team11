@@ -155,6 +155,7 @@ export async function loadSignUpModel() {
   const signupTemplate = await loadTemplate("../partials/signup.html");
   const signUpBtn = document.querySelector("#signUpBtn");
   const closesumbission = document.querySelector(".close-submission");
+  const welcomeBack = document.querySelector("#welcome-back");
   const formValues = {};
 
   if (!getLocalStorage("signed")) {
@@ -180,11 +181,22 @@ export async function loadSignUpModel() {
     });
   } else if (getLocalStorage("signed")) {
     signUpSection.style.display = "none";
+    const user = getLocalStorage("signed").name;
+    // Store the reference to the timeout
+    const timeoutReference = setTimeout(() => {
+      welcomeBack.textContent = `Welcome back ${user}`;
+    });
+
+    // Cancel the timeout after 5 seconds
+    setTimeout(() => {
+      welcomeBack.textContent = "";
+      clearTimeout(timeoutReference);
+    }, 10000);
   }
-  closeModel(signUpModal, closesumbission);
+  closeModel(signUpModal);
 }
 
-function closeModel(modal, closesumbission) {
+function closeModel(modal) {
   window.onclick = function (event) {
     if (event.target === modal) {
       modal.style.display = "none";
