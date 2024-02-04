@@ -102,7 +102,7 @@ async function loadTemplate(path) {
 
 export async function loadHeaderFooter() {
   try {
-    // Load header and footer templates 
+    // Load header and footer templates
     const headerTemplate = await loadTemplate("../partials/header.html"); // Replace 'headerTemplate' with the actual template name
     const footerTemplate = await loadTemplate("../partials/footer.html"); // Replace 'footerTemplate' with the actual template name
 
@@ -132,7 +132,7 @@ export async function sortByName(data) {
 }
 
 export function sortByPrice(data) {
-  const sortedData = [...data]; 
+  const sortedData = [...data];
   sortedData.sort((a, b) => a.FinalPrice - b.FinalPrice);
   return sortedData;
 }
@@ -144,7 +144,63 @@ export function sortByNameDescending(data) {
 }
 
 export function sortByPriceDescending(data) {
-  const sortedData = [...data]; 
+  const sortedData = [...data];
   sortedData.sort((a, b) => b.FinalPrice - a.FinalPrice);
   return sortedData;
+}
+
+export async function loadSignUpModel() {
+  const signUpModal = document.querySelector("#sign-up-modal");
+  const signUpSection = document.querySelector(".sign-up");
+  const signupTemplate = await loadTemplate("../partials/signup.html");
+  const signUpBtn = document.querySelector("#signUpBtn");
+  const closesumbission = document.querySelector(".close-submission");
+  const welcomeBack = document.querySelector("#welcome-back");
+  const formValues = {};
+
+  if (!getLocalStorage("signed")) {
+    signUpBtn.addEventListener("click", () => {
+      renderWithTemplate(signUpModal, signupTemplate);
+      signUpModal.style.display = "block";
+      const form = signUpModal.lastElementChild.lastElementChild;
+      const formBtn = form.lastElementChild;
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let formElement = event.target;
+        const formData = new FormData(formElement);
+
+        for (let key of formData.keys()) {
+          formValues[key] = formData.get(key);
+        }
+        // thankMessage.style.display = "flex";
+        signUpSection.style.display = "none";
+
+        console.log(formValues);
+        setLocalStorage("signed", formValues);
+      });
+    });
+  } else if (getLocalStorage("signed")) {
+    signUpSection.style.display = "none";
+    const user = getLocalStorage("signed").name;
+    // Store the reference to the timeout
+    const timeoutReference = setTimeout(() => {
+      welcomeBack.textContent = `Welcome back ${user}`;
+    });
+
+    // Cancel the timeout after 5 seconds
+    setTimeout(() => {
+      welcomeBack.textContent = "";
+      clearTimeout(timeoutReference);
+    }, 10000);
+  }
+  closeModel(signUpModal);
+}
+
+function closeModel(modal) {
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+      modal.innerHTML = "";
+    }
+  };
 }
