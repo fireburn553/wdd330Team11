@@ -1,9 +1,9 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
-function productCardTemplate(product) {
-  return `<li class="product-card">
-    <a href="product_pages/index.html?product=${product.Id}">
-      <img src="${product.Image}" alt="Image of ${product.Name}">
+function productCardTemplate(product){
+    return `<li class="product-card">
+    <a href="/product_pages/index.html?product=${product.Id}">
+      <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.Name}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
@@ -12,31 +12,25 @@ function productCardTemplate(product) {
 }
 
 
-export default class ProductListing {
-  constructor(category, dataSource, listElement) {
-    this.category = category;
-    this.dataSource = dataSource;
-    this.listElement = listElement;
-  }
+export default class ProductListing { 
+    constructor (category, dataSource, listElement){
+        this.dataSource = dataSource;
+        this.category = category;
+        this.listElement = listElement;
+        this.list = null;
+    }
 
- 
-  async init() {
-    const list = await this.dataSource.getData(this.category);
-    this.filterTents(list);
-  }
+    async init() {
+        this.list = await this.dataSource.getData(this.category);
+        this.renderList(this.getList());
+        document.querySelector(".title").innerHTML = this.category;
+    }
 
-  renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list)
-    //set the title to the current category
-    document.querySelector(".title").innerHTML = this.category;
-  }
-  
-   filterTents(list) {
+    renderList(list, RenderClear = false) {
+      renderListWithTemplate(productCardTemplate, this.listElement, list, "afterbegin", RenderClear)
+    }
 
-      const newList = list.slice(0, 4);
-
-      this.renderList(newList);
-  }
+    getList() {
+      return this.list;
+    }
 }
-
-

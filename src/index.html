@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/main.js" type="module"></script>
   </head>
   <body>
     <header class="divider">
@@ -62,39 +63,96 @@
           comfortably at an affordable price.
         </p>
       </section>
-      <section class="products">
-        <h2>Top Products</h2>
-        <ul class="product-list">
-          <li>
-          <a href="product-listing/index.html?category=tents">
-            <img src="images/category-icons/noun_Tent_3544767.svg" alt="Tent Icon from Noun Project: Mustofa Bayu" />
-            <h2>Tents</h2>
-          </a>
-        </li>
-        <li>
-          <a href="product-listing/index.html?category=backpacks">
-            <img src="images/category-icons/noun_carrier%20bag_3544771.svg"
-              alt="Backpack Icon from Noun Project: Mustofa Bayu" />
-            <h2>Backpacks</h2>
-          </a>
-        </li>
-        <li>
-          <a href="product-listing/index.html?category=sleeping-bags">
-            <img src="images/category-icons/noun_Sleeping%20Bag_3544775.svg"
-              alt="Sleeping Bag Icon from Noun Project: Mustofa Bayu" />
-            <h2>Sleeping Bags</h2>
-          </a>
-        </li>
-        <li>
-          <a href="product-listing/index.html?category=hammocks">
-            <img src="images/category-icons/noun_Hammock_791143.svg"
-              alt="Hammock Icon from Noun Project: Paul Richard" />
-            <h2>Hammocks</h2>
-          </a>
-        </li>
-        </ul>
+      <section class="sign-up">
+        <div id="sign-up-modal"></div>
+        <button id="signUpBtn">Sign Up</button>
+        <div id="thankMessage">
+          <p>Thank you for signing up!</p>
+        </div>
+      </section>
+      <section class="category">
+        <div class="wrapper-category">
+          <div class="individual-category">
+            <a href="product-listing/index.html?category=tents">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Tent_3544767.svg"
+                alt="Tent Icon from Noun Project: Mustofa Bayu"
+              />
+
+              <h3>Tents</h3>
+            </a>
+          </div>
+          <div class="individual-category">
+            <a href="product-listing/index.html?category=sleeping-bags">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Sleeping%20Bag_3544775.svg"
+                alt="Sleeping Bag Icon from Noun Project: Mustofa Bayu"
+              />
+              <h3>Sleeping Bags</h3>
+            </a>
+          </div>
+          <div class="individual-category">
+            <a href="product-listing/index.html?category=backpacks">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_carrier%20bag_3544771.svg"
+                alt="Backpack Icon from Noun Project: Mustofa Bayu"
+              />
+              <h3>Backpacks</h3>
+            </a>
+          </div>
+          <div class="individual-category">
+            <a href="product-listing/index.html?category=hammocks">
+              <img
+                src="https://byui-cit.github.io/wdd330/images/category-icons/noun_Hammock_791143.svg"
+                alt="Hammock Icon from Noun Project: Paul Richard"
+              />
+              <h3>Hammocks</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section>
+        <button id="join-news-btn">Join Our Newsletter</button>
+        <form method="GET" action="index.html" id="modal">
+          <div id="content">
+            <span class="close">&times;</span>
+            <div id="modal-content">
+              <fieldset>
+                <h1>Join Our Newsletter</h1>
+                <label>
+                  Email:
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="example@gmail.com"
+                    required
+                    id="email"
+                  />
+                </label>
+                <input
+                  type="submit"
+                  name="submitBtn"
+                  class="submitBtn"
+                  value="JOIN"
+                />
+              </fieldset>
+            </div>
+          </div>
+        </form>
+        <div class="thanks">
+          <div id="thankcontent">
+            <span class="close-submission">&times;</span>
+            <img
+              class="submitsuccessimg"
+              src="images/submitSuccess.webp"
+              alt="Success Image"
+            />
+            <h2 class="thankyou">Thank You!</h2>
+            <p class="thankyou">You are now member.</p>
+          </div>
+        </div>
       </section>
     </main>
-    <footer>&copy;NOT a real business</footer>
+    <footer id="main-footer"></footer>
   </body>
 </html>
