@@ -72,6 +72,32 @@
       <input type="date" id="expiration-date" name="expiration-date" placeholder="Expiration Date"
         pattern="\d{4}-\d{2}-\d{2}" required><br>
       <input type="text" id="security-code" name="security-code" placeholder="Security Code" required><br>
+
+      <fieldset name="checkout-summary" class="order-summary" required>
+          <legend>Order Summary</legend>
+          <ul>
+            <li>
+              <label for="subTotal"
+            >label>Item Subtotal(<span id="num-items"></span>)
+          </label>
+          <p name="subTotal" id="subTotal"></p>
+              </li>
+              <li>
+               <label for="shipping">Shipping Estimate</label>
+               <p id="shipping"></p>
+              </li>
+              <li>
+                <label for="tax">Tax</label>
+                <p id="tax"></p>
+              </li>
+              <li>
+                <label for="orderTotal"><b>Order Total</b></label>
+                <p id="orderTotal"></p>
+              </li>
+            </ul>
+        </fieldset>
+
+
       <button type="submit" id="checkout-button">Checkout</button>
     </form>
   </main>
