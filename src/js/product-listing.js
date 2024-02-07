@@ -1,12 +1,12 @@
 import ExternalServices from "./ExternalServices.mjs";
 import ProductListing from "./ProductListing.mjs";
-import { updateCartBadge, loadHeaderFooter, getParam } from "./utils.mjs";
-import {
-  sortByName,
-  sortByNameDescending,
-  sortByPrice,
-  sortByPriceDescending,
-} from "./utils.mjs";
+import { loadHeaderFooter, getParam } from "./utils.mjs";
+// import {
+//   sortByName,
+//   sortByNameDescending,
+//   sortByPrice,
+//   sortByPriceDescending,
+// } from "./utils.mjs";
 
 loadHeaderFooter();
 const category = getParam("category");
@@ -19,32 +19,32 @@ const myList = new ProductListing(category, dataSource, listElement);
 // finally call the init method to show our products
 myList.init();
 
-updateCartBadge();
+// updateCartBadge();
 
-const dropdown = document.getElementById("productSortByDropdown");
+// const dropdown = document.getElementById("productSortByDropdown");
 
-dropdown.addEventListener("change", async function () {
-  const selectedOption = dropdown.value;
-  let sortedList;
+// dropdown.addEventListener("change", async function () {
+//   const selectedOption = dropdown.value;
+//   let sortedList;
 
-  // Determine the selected sorting option and call the appropriate sorting function
-  switch (selectedOption) {
-    case "Name: A to Z":
-      sortedList = await sortByName(myList.getList());
-      break;
-    case "Name: Z to A":
-      sortedList = await sortByNameDescending(myList.getList());
-      break;
-    case "Price: Low to High":
-      sortedList = await sortByPrice(myList.getList());
-      break;
-    case "Price: High to Low":
-      sortedList = await sortByPriceDescending(myList.getList());
-      break;
-    default:
-      sortedList = myList.getList();
-  }
+//   // Determine the selected sorting option and call the appropriate sorting function
+//   switch (selectedOption) {
+//     case "Name: A to Z":
+//       sortedList = await sortByName(myList.getList());
+//       break;
+//     case "Name: Z to A":
+//       sortedList = await sortByNameDescending(myList.getList());
+//       break;
+//     case "Price: Low to High":
+//       sortedList = await sortByPrice(myList.getList());
+//       break;
+//     case "Price: High to Low":
+//       sortedList = await sortByPriceDescending(myList.getList());
+//       break;
+//     default:
+//       sortedList = myList.getList();
+//   }
 
-  // Render the sorted list
-  myList.renderList(sortedList, true);
-});
+//   // Render the sorted list
+//   myList.renderList(sortedList, true);
+// });
